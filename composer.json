@@ -29,7 +29,11 @@
     "require": {
         "php": "^8.1",
         "rinvex/laravel-subscriptions": "dev-new",
-        "lara-zeus/core": "^3.1"
+        "filament/filament": "^3.2",
+        "ext-json": "*",
+        "ext-pdo_sqlite": "*",
+        "ext-sqlite3": "*",
+        "calebporzio/sushi": "^2.4"
     },
     "require-dev": {
         "nunomaduro/collision": "^7.0",
