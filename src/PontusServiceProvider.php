@@ -2,7 +2,6 @@
 
 namespace LaraZeus\Pontus;
 
-use LaraZeus\Core\CoreServiceProvider;
 use LaraZeus\Pontus\Console\InstallCommand;
 use Spatie\LaravelPackageTools\Package;
 use Spatie\LaravelPackageTools\PackageServiceProvider;
@@ -19,10 +18,5 @@ class PontusServiceProvider extends PackageServiceProvider
                 InstallCommand::class,
             ])
             ->hasTranslations();
-    }
-
-    public function packageBooted(): void
-    {
-        CoreServiceProvider::setThemePath('pontus');
     }
 }
