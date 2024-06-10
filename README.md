@@ -2,6 +2,8 @@
 <a href="https://larazeus.com"><img src="https://larazeus.com/images/lara-zeus-pontus.png?v=1" /></a>
 </p>
 
+## ⚠️️️ ⚠️️️ Not ready for production yet! ⚠️️️ ⚠️️️
+
 <h4 align="center">Lara-zeus Pontus, subscriptions, plans, invoices, and features manager</h4>
 
 <p align="center">
