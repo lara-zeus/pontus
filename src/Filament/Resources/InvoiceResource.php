@@ -4,7 +4,6 @@ namespace LaraZeus\Pontus\Filament\Resources;
 
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Section;
-use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
@@ -26,11 +25,6 @@ class InvoiceResource extends PontusResource
         return $form->schema([
             Section::make()
                 ->schema([
-                    Select::make('customer_id')
-                        ->relationship('customer', 'customer_surname')
-                       // ->options(User::pluck('name', 'id'))
-                        ->required()
-                        ->searchable(),
                     TextInput::make('item_id'),
                     TextInput::make('amount')->required(),
                     TextInput::make('tax')->required(),

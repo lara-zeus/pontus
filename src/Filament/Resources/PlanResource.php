@@ -14,15 +14,18 @@ use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Table;
+use LaraZeus\Chaos\Forms\Components\MultiLang;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\CreatePlan;
 use LaraZeus\Pontus\Models\Features;
 use LaraZeus\Pontus\Models\Intervals;
-use Rinvex\Subscriptions\Models\Plan;
 
 class PlanResource extends PontusResource
 {
-    protected static ?string $model = Plan::class;
+    public static function getModel(): string
+    {
+        return config('rinvex.subscriptions.models.plan');
+    }
 
     protected static ?int $navigationSort = 1;
 
@@ -32,57 +35,63 @@ class PlanResource extends PontusResource
             ->columns(3)
             ->schema(
                 [
-                    Grid::make()->columnSpan(2)->schema([
+                    Grid::make()
+                        ->columnSpan(2)
+                        ->schema([
 
-                        Section::make(__('.nameAndDesc'))
-                            ->columns()
-                            ->schema([
-                                TextInput::make('name')->required(),
-                                TextInput::make('slug')->required(),
-                                RichEditor::make('description')->columnSpanFull(),
-                            ]),
-
-                        Repeater::make('plan_feature')
-                            ->label(__('.plan_features'))
-                            ->relationship('features')
-                            ->columnSpanFull()
-                            ->schema([
-                                Grid::make()->schema([
-                                    TextInput::make('name')
-                                        ->required(),
-                                    Select::make('slug')
-                                        ->options(Features::pluck('label', 'code')),
+                            Section::make(__('.nameAndDesc'))
+                                ->columns()
+                                ->schema([
+                                    MultiLang::make('name'),
+                                    TextInput::make('slug')->required(),
+                                    RichEditor::make('description')->columnSpanFull(),
                                 ]),
 
-                                RichEditor::make('description')->required()
-                                    ->hint(__('.features_description_hint')),
+                            Repeater::make('plan_feature')
+                                ->label(__('.plan_features'))
+                                ->relationship('features')
+                                ->columnSpanFull()
+                                ->schema([
+                                    Grid::make()->schema([
+                                        TextInput::make('name')
+                                            ->required(),
+                                        Select::make('slug')
+                                            ->options(Features::pluck('label', 'code')),
+                                    ]),
 
-                                Grid::make()->schema([
-                                    TextInput::make('value')->required()
-                                        ->hint(__('.plan_feature.for_static_plans')),
-                                    TextInput::make('price')
-                                        ->hint(__('.plan_feature.price_hint'))
-                                        ->default(0)
-                                        ->required(),
-                                    TextInput::make('sort_order')
-                                        ->required(),
-                                ]),
+                                    RichEditor::make('description')->required()
+                                        ->hint(__('.features_description_hint')),
 
-                                Grid::make()->schema([
-                                    TextInput::make('resettable_period')
-                                        ->required(),
-                                    Select::make('resettable_interval')
-                                        ->options(Intervals::pluck('label', 'name')),
+                                    Grid::make()->schema([
+                                        TextInput::make('value')->required()
+                                            ->hint(__('.plan_feature.for_static_plans')),
+                                        TextInput::make('price')
+                                            ->hint(__('.plan_feature.price_hint'))
+                                            ->default(0)
+                                            ->required(),
+                                        TextInput::make('sort_order')
+                                            ->required(),
+                                    ]),
+
+                                    Grid::make()->schema([
+                                        TextInput::make('resettable_period')
+                                            ->required(),
+                                        Select::make('resettable_interval')
+                                            ->options(Intervals::pluck('label', 'name')),
+                                    ]),
                                 ]),
-                            ]),
-                    ]),
+                        ]),
 
                     Grid::make()->columnSpan(1)->schema([
                         Section::make()
                             ->columns()
                             ->schema([
-                                TextInput::make('price')->required()->default(0),
-                                TextInput::make('signup_fee')->required()->default(0),
+                                TextInput::make('price')
+                                    ->required()
+                                    ->default(0),
+                                TextInput::make('signup_fee')
+                                    ->required()
+                                    ->default(0),
                                 Select::make('subscription_model')
                                     ->columnSpanFull()
                                     ->default('PAYG')
@@ -151,15 +160,16 @@ class PlanResource extends PontusResource
 
     public static function table(Table $table): Table
     {
-        return $table->columns([
-            TextColumn::make('slug'),
-            TextColumn::make('name'),
-            TextColumn::make('subscription_model'),
-            IconColumn::make('is_active')->boolean(),
-            IconColumn::make('is_visible')->boolean(),
-            TextColumn::make('price'),
-            TextColumn::make('features_count')->counts('features'),
-        ])
+        return $table
+            ->columns([
+                TextColumn::make('slug'),
+                TextColumn::make('name'),
+                TextColumn::make('subscription_model'),
+                IconColumn::make('is_active')->boolean(),
+                IconColumn::make('is_visible')->boolean(),
+                TextColumn::make('price'),
+                TextColumn::make('features_count')->counts('features'),
+            ])
             ->filters([
                 Filter::make('is_active')->label(__('subscription.is_active')),
                 Filter::make('is_visible')->label(__('subscription.is_visible')),
