@@ -2,9 +2,9 @@
 
 namespace LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 
+use Filament\Actions;
 use Filament\Resources\Pages\ListRecords;
 use LaraZeus\Pontus\Filament\Resources\PlanResource;
-use Filament\Actions;
 
 class ListPlans extends ListRecords
 {
