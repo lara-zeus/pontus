@@ -12,9 +12,9 @@ class Features extends Model
     public function getRows(): array
     {
         return [
-            ['code' => 'users', 'label' => __('subscription.features.users')],
-            ['code' => 'certificates', 'label' => __('subscription.features.certificates')],
-            ['code' => 'cooperative_training', 'label' => __('subscription.features.cooperative_training')],
+            ['code' => 'users', 'label' => __('zeus-pontus::plan.features.users')],
+            ['code' => 'certificates', 'label' => __('zeus-pontus::plan.features.certificates')],
+            ['code' => 'cooperative_training', 'label' => __('zeus-pontus::plan.features.cooperative_training')],
         ];
     }
 }

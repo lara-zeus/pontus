@@ -12,11 +12,11 @@ class Intervals extends Model
     public function getRows(): array
     {
         return [
-            ['name' => 'hour', 'label' => __('subscription.hour')],
-            ['name' => 'day', 'label' => __('subscription.day')],
-            ['name' => 'week', 'label' => __('subscription.week')],
-            ['name' => 'month', 'label' => __('subscription.month')],
-            ['name' => 'year', 'label' => __('subscription.year')],
+            ['name' => 'hour', 'label' => __('zeus-pontus::plan.hour')],
+            ['name' => 'day', 'label' => __('zeus-pontus::plan.day')],
+            ['name' => 'week', 'label' => __('zeus-pontus::plan.week')],
+            ['name' => 'month', 'label' => __('zeus-pontus::plan.month')],
+            ['name' => 'year', 'label' => __('zeus-pontus::plan.year')],
         ];
     }
 }

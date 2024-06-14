@@ -2,10 +2,10 @@
 
 namespace LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 
-use Filament\Resources\Pages\EditRecord;
+use LaraZeus\Chaos\Filament\ChaosResource\Pages\ChaosEditRecord;
 use LaraZeus\Pontus\Filament\Resources\PlanResource;
 
-class EditPlan extends EditRecord
+class EditPlan extends ChaosEditRecord
 {
     protected static string $resource = PlanResource::class;
 }

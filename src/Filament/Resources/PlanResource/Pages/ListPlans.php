@@ -3,10 +3,10 @@
 namespace LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 
 use Filament\Actions;
-use Filament\Resources\Pages\ListRecords;
+use LaraZeus\Chaos\Filament\ChaosResource\Pages\ChaosListRecords;
 use LaraZeus\Pontus\Filament\Resources\PlanResource;
 
-class ListPlans extends ListRecords
+class ListPlans extends ChaosListRecords
 {
     protected static string $resource = PlanResource::class;
 
