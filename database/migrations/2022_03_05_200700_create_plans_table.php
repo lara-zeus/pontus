@@ -20,6 +20,7 @@ return new class() extends Migration
             $table->boolean('is_active')->default(true);
             $table->decimal('price')->default('0.00');
             $table->decimal('signup_fee')->default('0.00');
+            $table->string('subscription_model')->default('FIXED');
             $table->string('currency', 3);
             $table->smallInteger('trial_period')->unsigned()->default(0);
             $table->string('trial_interval')->default('day');

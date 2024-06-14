@@ -17,6 +17,7 @@ class PontusServiceProvider extends PackageServiceProvider
             ->hasCommands([
                 InstallCommand::class,
             ])
+            ->hasConfigFile()
             ->hasTranslations();
     }
 }
