@@ -31,7 +31,7 @@ final class PontusPlugin implements Plugin
 
     public static function make(): static
     {
-        return new self();
+        return new self;
     }
 
     public static function get(): static
