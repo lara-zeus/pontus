@@ -11,4 +11,9 @@ class PontusResource extends Resource
     {
         return PontusPlugin::get()->getNavigationGroupLabel();
     }
+
+    public static function shouldRegisterNavigation(): bool
+    {
+        return ! in_array(static::class, PontusPlugin::get()->getHiddenResources());
+    }
 }
