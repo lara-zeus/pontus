@@ -28,11 +28,11 @@
     ],
     "require": {
         "php": "^8.1",
-        "rinvex/laravel-subscriptions": "dev-new",
-        "filament/filament": "^3.2",
         "ext-json": "*",
         "ext-pdo_sqlite": "*",
         "ext-sqlite3": "*",
+        "rinvex/laravel-subscriptions": "dev-laravel-12",
+        "filament/filament": "^3.2",
         "calebporzio/sushi": "^2.4",
         "lara-zeus/chaos": "^1.0"
     },
