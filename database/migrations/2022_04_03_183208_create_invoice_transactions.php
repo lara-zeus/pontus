@@ -19,10 +19,10 @@ return new class extends Migration
             $table->string('invoice_id');
             $table->decimal('amount')->default('0.00');
 
-            //$table->string('cart_id')->nullable();
+            // $table->string('cart_id')->nullable();
             $table->string('status')->default('new');
-            //$table->boolean('approved')->default(0);
-            //$table->bigInteger('order_ref')->nullable();
+            // $table->boolean('approved')->default(0);
+            // $table->bigInteger('order_ref')->nullable();
 
             $table->string('trx_reference')->nullable();
             $table->string('trx_id')->nullable();
@@ -34,9 +34,9 @@ return new class extends Migration
             $table->unsignedInteger('refund_for_id')->nullable();
             $table->string('payment_type')->nullable();
             $table->string('payment_method')->nullable();
-            //$table->string('payment_type_acc')->nullable();
-            //$table->boolean('is_checked_failure')->default(0);
-            //$table->string('attachment')->nullable();
+            // $table->string('payment_type_acc')->nullable();
+            // $table->boolean('is_checked_failure')->default(0);
+            // $table->string('attachment')->nullable();
             $table->timestamps();
         });
     }
