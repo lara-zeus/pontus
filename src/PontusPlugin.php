@@ -2,17 +2,23 @@
 
 namespace LaraZeus\Pontus;
 
+use Closure;
 use Filament\Contracts\Plugin;
 use Filament\Panel;
 use Filament\Support\Concerns\EvaluatesClosures;
+use LaraZeus\FilamentPluginTools\Concerns\CanHideResources;
+use LaraZeus\FilamentPluginTools\Concerns\HasNavigationGroupLabel;
 use LaraZeus\Pontus\Filament\Resources\InvoiceResource;
 use LaraZeus\Pontus\Filament\Resources\PlanResource;
 use LaraZeus\Pontus\Filament\Resources\PlanSubscriptionResource;
 
 final class PontusPlugin implements Plugin
 {
-    use Configuration;
+    use CanHideResources;
     use EvaluatesClosures;
+    use HasNavigationGroupLabel;
+
+    protected Closure | string $navigationGroupLabel = 'Pontus';
 
     public function getId(): string
     {
