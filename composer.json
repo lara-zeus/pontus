@@ -31,10 +31,10 @@
         "ext-json": "*",
         "ext-pdo_sqlite": "*",
         "ext-sqlite3": "*",
-        "lara-zeus/filament-plugin-tools": "^1.0",
+        "lara-zeus/filament-plugin-tools": "*",
         "rinvex/laravel-subscriptions": "dev-laravel-12",
         "calebporzio/sushi": "^2.4",
-        "lara-zeus/chaos": "^1.0"
+        "lara-zeus/chaos": "*"
     },
     "require-dev": {
         "nunomaduro/collision": "^7.0",
