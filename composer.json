@@ -33,7 +33,6 @@
         "ext-sqlite3": "*",
         "lara-zeus/filament-plugin-tools": "^1.0",
         "rinvex/laravel-subscriptions": "dev-laravel-12",
-        "filament/filament": "^3.2",
         "calebporzio/sushi": "^2.4",
         "lara-zeus/chaos": "^1.0"
     },

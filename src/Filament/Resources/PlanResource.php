@@ -10,6 +10,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -42,10 +43,10 @@ class PlanResource extends PontusResource
         return __(static::$langFile . 'title');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
         return ChaosForms::make(
-            $form,
+            $schema,
             [
                 Section::make('nameAndDesc')
                     ->heading(__(static::$langFile . 'nameAndDesc'))

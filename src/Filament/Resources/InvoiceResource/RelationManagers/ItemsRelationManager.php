@@ -5,6 +5,7 @@ namespace LaraZeus\Pontus\Filament\Resources\InvoiceResource\RelationManagers;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\RelationManagers\RelationManager;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -14,7 +15,7 @@ class ItemsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'quantity';
 
-    public function form(Form $form): Form
+    public static function form(Schema $form): Schema
     {
         return $form->schema([
             TextInput::make('description')->maxLength(255)->required(),
