@@ -2,13 +2,13 @@
 
 namespace LaraZeus\Pontus\Filament\Resources;
 
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
 use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
@@ -34,12 +34,12 @@ class PlanResource extends PontusResource
 
     public static function getModelLabel(): string
     {
-        return __(static::$langFile . 'singleTitle');
+        return __(static::$langFile.'singleTitle');
     }
 
     public static function getPluralModelLabel(): string
     {
-        return __(static::$langFile . 'title');
+        return __(static::$langFile.'title');
     }
 
     public static function form(Schema $schema): Schema
@@ -48,102 +48,109 @@ class PlanResource extends PontusResource
             $schema,
             [
                 Section::make('nameAndDesc')
-                    ->heading(__(static::$langFile . 'nameAndDesc'))
+                    ->columnSpanFull()
+                    ->heading(__(static::$langFile.'nameAndDesc'))
                     ->columns()
                     ->schema([
                         MultiLang::make('name')
-                            ->label(__(static::$langFile . 'name')),
+                            ->label(__(static::$langFile.'name')),
                         TextInput::make('slug')
                             ->unique(ignoreRecord: true)
-                            ->label(__(static::$langFile . 'slug'))
+                            ->label(__(static::$langFile.'slug'))
                             ->required(),
                         RichEditor::make('description')
-                            ->label(__(static::$langFile . 'description'))
+                            ->label(__(static::$langFile.'description'))
                             ->columnSpanFull(),
                     ]),
 
                 Repeater::make('plan_feature')
-                    ->label(__(static::$langFile . 'plan_features'))
+                    ->label(__(static::$langFile.'plan_features'))
                     ->relationship('features')
                     ->columnSpanFull()
                     ->collapsible()
                     ->reorderable()
                     ->schema([
                         Grid::make()
+                            ->columnSpanFull()
                             ->schema([
                                 MultiLang::make('name')
-                                    ->label(__(static::$langFile . 'name')),
+                                    ->label(__(static::$langFile.'name')),
                                 Select::make('slug')
-                                    ->label(__(static::$langFile . 'plan_feature.slug'))
+                                    ->label(__(static::$langFile.'plan_feature.slug'))
                                     ->options(config('zeus-pontus.models.Features')::pluck('label', 'code')),
                             ]),
 
                         RichEditor::make('description')
-                            ->label(__(static::$langFile . 'description'))
+                            ->label(__(static::$langFile.'description'))
                             ->required()
-                            ->hint(__(static::$langFile . 'features_description_hint')),
+                            ->hint(__(static::$langFile.'features_description_hint')),
 
                         Grid::make()
+                            ->columnSpanFull()
                             ->schema([
                                 TextInput::make('value')
                                     ->required()
-                                    ->label(__(static::$langFile . 'plan_feature.value'))
-                                    ->hint(__(static::$langFile . 'plan_feature.for_static_plans')),
+                                    ->label(__(static::$langFile.'plan_feature.value'))
+                                    ->hint(__(static::$langFile.'plan_feature.for_static_plans')),
                                 TextInput::make('price')
-                                    ->label(__(static::$langFile . 'price'))
-                                    ->hint(__(static::$langFile . 'plan_feature.price_hint'))
+                                    ->label(__(static::$langFile.'price'))
+                                    ->hint(__(static::$langFile.'plan_feature.price_hint'))
                                     ->default(0)
                                     ->required(),
                                 TextInput::make('sort_order')
-                                    ->label(__(static::$langFile . 'sort_order'))
+                                    ->label(__(static::$langFile.'sort_order'))
                                     ->required(),
                             ]),
 
-                        Grid::make()->schema([
-                            TextInput::make('resettable_period')
-                                ->label(__(static::$langFile . 'plan_feature.resettable_period'))
-                                ->required(),
-                            Select::make('resettable_interval')
-                                ->default('month')
-                                ->label(__(static::$langFile . 'plan_feature.resettable_interval'))
-                                ->options(Intervals::pluck('label', 'name')),
-                        ]),
+                        Grid::make()
+                            ->columnSpanFull()
+                            ->schema([
+                                TextInput::make('resettable_period')
+                                    ->label(__(static::$langFile.'plan_feature.resettable_period'))
+                                    ->required(),
+                                Select::make('resettable_interval')
+                                    ->default('month')
+                                    ->label(__(static::$langFile.'plan_feature.resettable_interval'))
+                                    ->options(Intervals::pluck('label', 'name')),
+                            ]),
                     ]),
             ],
             [
                 Section::make()
+                    ->columnSpanFull()
                     ->columns()
                     ->compact()
                     ->schema([
                         TextInput::make('price')
-                            ->label(__(static::$langFile . 'price'))
+                            ->label(__(static::$langFile.'price'))
                             ->required()
                             ->default(0),
                         TextInput::make('signup_fee')
-                            ->label(__(static::$langFile . 'signup_fee'))
+                            ->label(__(static::$langFile.'signup_fee'))
                             ->required()
                             ->default(0),
                         Select::make('subscription_model')
-                            ->label(__(static::$langFile . 'subscription_model'))
+                            ->label(__(static::$langFile.'subscription_model'))
                             ->columnSpanFull()
                             ->default('PAYG')
                             ->options([
-                                'PAYG' => __(static::$langFile . 'PAYG'),
-                                'FIXED' => __(static::$langFile . 'FIXED'),
+                                'PAYG' => __(static::$langFile.'PAYG'),
+                                'FIXED' => __(static::$langFile.'FIXED'),
                             ]),
                     ]),
 
                 Section::make()
+                    ->columnSpanFull()
                     ->compact()
-                    ->heading(__(static::$langFile . 'plans_invoice'))
+                    ->heading(__(static::$langFile.'plans_invoice'))
                     ->schema([
                         TextInput::make('invoice_period')
-                            ->label(__(static::$langFile . 'invoice_period'))
+                            ->label(__(static::$langFile.'invoice_period'))
                             ->required()
                             ->integer()
                             ->default(1),
                         Select::make('invoice_interval')
-                            ->label(__(static::$langFile . 'invoice_interval'))
+                            ->label(__(static::$langFile.'invoice_interval'))
                             ->options(Intervals::pluck(
                                 'label',
                                 'name'
@@ -152,56 +159,59 @@ class PlanResource extends PontusResource
                     ]),
 
                 Section::make()
-                    ->heading(__(static::$langFile . 'plans_trials'))
+                    ->columnSpanFull()
+                    ->heading(__(static::$langFile.'plans_trials'))
                     ->compact()
                     ->schema([
                         TextInput::make('trial_period')
-                            ->label(__(static::$langFile . 'trial_period'))
+                            ->label(__(static::$langFile.'trial_period'))
                             ->required()
                             ->integer()
                             ->default(15),
                         Select::make('trial_interval')
-                            ->label(__(static::$langFile . 'trial_interval'))
+                            ->label(__(static::$langFile.'trial_interval'))
                             ->options(Intervals::pluck('label', 'name'))
                             ->default('day'),
                     ]),
 
                 Section::make()
+                    ->columnSpanFull()
                     ->compact()
-                    ->heading(__(static::$langFile . 'plans_grace'))
+                    ->heading(__(static::$langFile.'plans_grace'))
                     ->schema([
                         TextInput::make('grace_period')
-                            ->label(__(static::$langFile . 'grace_period'))
+                            ->label(__(static::$langFile.'grace_period'))
                             ->required()
                             ->integer()
                             ->default(15),
                         Select::make('grace_interval')
-                            ->label(__(static::$langFile . 'grace_interval'))
+                            ->label(__(static::$langFile.'grace_interval'))
                             ->options(Intervals::pluck('label', 'name'))
                             ->default('day'),
                     ]),
 
                 Section::make()
+                    ->columnSpanFull()
                     ->compact()
-                    ->heading(__(static::$langFile . 'plans_options'))
+                    ->heading(__(static::$langFile.'plans_options'))
                     ->schema([
                         TextInput::make('sort_order')
-                            ->label(__(static::$langFile . 'sort_order'))
+                            ->label(__(static::$langFile.'sort_order'))
                             ->required()
                             ->default(1)
                             ->integer(),
                         TextInput::make('currency')
-                            ->label(__(static::$langFile . 'currency'))
+                            ->label(__(static::$langFile.'currency'))
                             ->default('SAR')
                             ->maxLength(3),
                         TextInput::make('active_subscribers_limit')
-                            ->label(__(static::$langFile . 'active_subscribers_limit'))
+                            ->label(__(static::$langFile.'active_subscribers_limit'))
                             ->integer(),
                         Toggle::make('is_active')
-                            ->label(__(static::$langFile . 'is_active'))
+                            ->label(__(static::$langFile.'is_active'))
                             ->required(),
                         Toggle::make('is_visible')
-                            ->label(__(static::$langFile . 'is_visible'))
+                            ->label(__(static::$langFile.'is_visible'))
                             ->required(),
                     ]),
             ]
@@ -216,21 +226,21 @@ class PlanResource extends PontusResource
             table: $table,
             columns: [
                 TextColumn::make('slug')
-                    ->label(__(static::$langFile . 'slug')),
+                    ->label(__(static::$langFile.'slug')),
                 TextColumn::make('name')
-                    ->label(__(static::$langFile . 'name')),
+                    ->label(__(static::$langFile.'name')),
                 TextColumn::make('subscription_model')
-                    ->label(__(static::$langFile . 'subscription_model')),
+                    ->label(__(static::$langFile.'subscription_model')),
                 IconColumn::make('is_active')
-                    ->label(__(static::$langFile . 'is_active'))
+                    ->label(__(static::$langFile.'is_active'))
                     ->boolean(),
                 IconColumn::make('is_visible')
-                    ->label(__(static::$langFile . 'is_visible'))
+                    ->label(__(static::$langFile.'is_visible'))
                     ->boolean(),
                 TextColumn::make('price')
-                    ->label(__(static::$langFile . 'price')),
+                    ->label(__(static::$langFile.'price')),
                 TextColumn::make('features_count')
-                    ->label(__(static::$langFile . 'features_count'))
+                    ->label(__(static::$langFile.'features_count'))
                     ->counts('features'),
             ],
             filters: [
