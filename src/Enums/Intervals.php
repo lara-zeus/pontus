@@ -14,6 +14,6 @@ enum Intervals: string implements HasLabel
 
     public function getLabel(): ?string
     {
-        return __('zeus-pontus::plan.'.$this->name);
+        return __('zeus-pontus::plan.' . $this->name);
     }
 }

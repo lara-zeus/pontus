@@ -10,6 +10,6 @@ enum Features: string implements HasLabel
 
     public function getLabel(): ?string
     {
-        return __('zeus-pontus::plan.features.'.$this->name);
+        return __('zeus-pontus::plan.features.' . $this->name);
     }
 }
