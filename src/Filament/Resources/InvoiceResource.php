@@ -22,7 +22,7 @@ class InvoiceResource extends PontusResource
 
     public static function form(Schema $schema): Schema
     {
-        return $schema->schema([
+        return $schema->components([
             Section::make()
                 ->columnSpanFull()
                 ->schema([

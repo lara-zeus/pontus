@@ -21,7 +21,7 @@ class PlanSubscriptionResource extends PontusResource
 
     public static function form(Schema $schema): Schema
     {
-        return $schema->schema([
+        return $schema->components([
             TextInput::make('plan_id')
                 ->required(),
             TextInput::make('subscriber_type')

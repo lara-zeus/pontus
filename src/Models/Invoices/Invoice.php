@@ -5,10 +5,13 @@ namespace LaraZeus\Pontus\Models\Invoices;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use LaraZeus\Chaos\Concerns\ChaosModel;
 use Rinvex\Subscriptions\Models\PlanSubscription;
 
 class Invoice extends Model
 {
+    use ChaosModel;
+
     protected $casts = [
         'due_date' => 'date',
         'exp_date' => 'date',

@@ -19,7 +19,7 @@ use LaraZeus\Chaos\Filament\ChaosResource\ChaosTables;
 use LaraZeus\Chaos\Forms\Components\MultiLang;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\CreatePlan;
-use LaraZeus\Pontus\Models\Intervals;
+use LaraZeus\Pontus\Enums\Intervals;
 
 class PlanResource extends PontusResource
 {
@@ -77,7 +77,7 @@ class PlanResource extends PontusResource
                                     ->label(__(static::$langFile.'name')),
                                 Select::make('slug')
                                     ->label(__(static::$langFile.'plan_feature.slug'))
-                                    ->options(config('zeus-pontus.models.Features')::pluck('label', 'code')),
+                                    ->options(config('zeus-pontus.models.Features')),
                             ]),
 
                         RichEditor::make('description')
@@ -111,7 +111,7 @@ class PlanResource extends PontusResource
                                 Select::make('resettable_interval')
                                     ->default('month')
                                     ->label(__(static::$langFile.'plan_feature.resettable_interval'))
-                                    ->options(Intervals::pluck('label', 'name')),
+                                    ->options(Intervals::class),
                             ]),
                     ]),
             ],
@@ -151,10 +151,7 @@ class PlanResource extends PontusResource
                             ->default(1),
                         Select::make('invoice_interval')
                             ->label(__(static::$langFile.'invoice_interval'))
-                            ->options(Intervals::pluck(
-                                'label',
-                                'name'
-                            ))
+                            ->options(Intervals::class)
                             ->default('month'),
                     ]),
 
@@ -170,7 +167,7 @@ class PlanResource extends PontusResource
                             ->default(15),
                         Select::make('trial_interval')
                             ->label(__(static::$langFile.'trial_interval'))
-                            ->options(Intervals::pluck('label', 'name'))
+                            ->options(Intervals::class)
                             ->default('day'),
                     ]),
 
@@ -186,7 +183,7 @@ class PlanResource extends PontusResource
                             ->default(15),
                         Select::make('grace_interval')
                             ->label(__(static::$langFile.'grace_interval'))
-                            ->options(Intervals::pluck('label', 'name'))
+                            ->options(Intervals::class)
                             ->default('day'),
                     ]),
 

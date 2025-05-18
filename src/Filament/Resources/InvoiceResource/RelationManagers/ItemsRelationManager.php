@@ -14,9 +14,9 @@ class ItemsRelationManager extends RelationManager
 
     protected static ?string $recordTitleAttribute = 'quantity';
 
-    public static function form(Schema $form): Schema
+    public function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             TextInput::make('description')->maxLength(255)->required(),
             TextInput::make('quantity')->required(),
             TextInput::make('amount')->required()->helperText('price + vat'),
