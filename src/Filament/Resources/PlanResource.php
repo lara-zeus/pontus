@@ -55,7 +55,7 @@ class PlanResource extends PontusResource
                         MultiLang::make('name')
                             ->label(__(static::$langFile.'name')),
                         TextInput::make('slug')
-                            ->unique(ignoreRecord: true)
+                            ->unique()
                             ->label(__(static::$langFile.'slug'))
                             ->required(),
                         RichEditor::make('description')
