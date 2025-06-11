@@ -56,7 +56,7 @@ class PlanResource extends PontusResource
                             ->label(__(static::$langFile . 'name')),
                         TextInput::make('slug')
                             ->unique()
-                            ->label(__(static::$langFile.'slug'))
+                            ->label(__(static::$langFile . 'slug'))
                             ->required(),
                         RichEditor::make('description')
                             ->label(__(static::$langFile . 'description'))
