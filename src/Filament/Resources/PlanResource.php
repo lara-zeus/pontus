@@ -2,14 +2,14 @@
 
 namespace LaraZeus\Pontus\Filament\Resources;
 
-use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
-use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
-use Filament\Forms\Form;
+use Filament\Schemas\Components\Grid;
+use Filament\Schemas\Components\Section;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\Filter;
@@ -17,9 +17,9 @@ use Filament\Tables\Table;
 use LaraZeus\Chaos\Filament\ChaosResource\ChaosForms;
 use LaraZeus\Chaos\Filament\ChaosResource\ChaosTables;
 use LaraZeus\Chaos\Forms\Components\MultiLang;
+use LaraZeus\Pontus\Enums\Intervals;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\CreatePlan;
-use LaraZeus\Pontus\Models\Intervals;
 
 class PlanResource extends PontusResource
 {
@@ -42,19 +42,20 @@ class PlanResource extends PontusResource
         return __(static::$langFile . 'title');
     }
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
         return ChaosForms::make(
-            $form,
+            $schema,
             [
                 Section::make('nameAndDesc')
+                    ->columnSpanFull()
                     ->heading(__(static::$langFile . 'nameAndDesc'))
                     ->columns()
                     ->schema([
                         MultiLang::make('name')
                             ->label(__(static::$langFile . 'name')),
                         TextInput::make('slug')
-                            ->unique(ignoreRecord: true)
+                            ->unique()
                             ->label(__(static::$langFile . 'slug'))
                             ->required(),
                         RichEditor::make('description')
@@ -70,12 +71,13 @@ class PlanResource extends PontusResource
                     ->reorderable()
                     ->schema([
                         Grid::make()
+                            ->columnSpanFull()
                             ->schema([
                                 MultiLang::make('name')
                                     ->label(__(static::$langFile . 'name')),
                                 Select::make('slug')
                                     ->label(__(static::$langFile . 'plan_feature.slug'))
-                                    ->options(config('zeus-pontus.models.Features')::pluck('label', 'code')),
+                                    ->options(config('zeus-pontus.models.Features')),
                             ]),
 
                         RichEditor::make('description')
@@ -84,6 +86,7 @@ class PlanResource extends PontusResource
                             ->hint(__(static::$langFile . 'features_description_hint')),
 
                         Grid::make()
+                            ->columnSpanFull()
                             ->schema([
                                 TextInput::make('value')
                                     ->required()
@@ -99,19 +102,22 @@ class PlanResource extends PontusResource
                                     ->required(),
                             ]),
 
-                        Grid::make()->schema([
-                            TextInput::make('resettable_period')
-                                ->label(__(static::$langFile . 'plan_feature.resettable_period'))
-                                ->required(),
-                            Select::make('resettable_interval')
-                                ->default('month')
-                                ->label(__(static::$langFile . 'plan_feature.resettable_interval'))
-                                ->options(Intervals::pluck('label', 'name')),
-                        ]),
+                        Grid::make()
+                            ->columnSpanFull()
+                            ->schema([
+                                TextInput::make('resettable_period')
+                                    ->label(__(static::$langFile . 'plan_feature.resettable_period'))
+                                    ->required(),
+                                Select::make('resettable_interval')
+                                    ->default('month')
+                                    ->label(__(static::$langFile . 'plan_feature.resettable_interval'))
+                                    ->options(Intervals::class),
+                            ]),
                     ]),
             ],
             [
                 Section::make()
+                    ->columnSpanFull()
                     ->columns()
                     ->compact()
                     ->schema([
@@ -134,6 +140,7 @@ class PlanResource extends PontusResource
                     ]),
 
                 Section::make()
+                    ->columnSpanFull()
                     ->compact()
                     ->heading(__(static::$langFile . 'plans_invoice'))
                     ->schema([
@@ -144,14 +151,12 @@ class PlanResource extends PontusResource
                             ->default(1),
                         Select::make('invoice_interval')
                             ->label(__(static::$langFile . 'invoice_interval'))
-                            ->options(Intervals::pluck(
-                                'label',
-                                'name'
-                            ))
+                            ->options(Intervals::class)
                             ->default('month'),
                     ]),
 
                 Section::make()
+                    ->columnSpanFull()
                     ->heading(__(static::$langFile . 'plans_trials'))
                     ->compact()
                     ->schema([
@@ -162,11 +167,12 @@ class PlanResource extends PontusResource
                             ->default(15),
                         Select::make('trial_interval')
                             ->label(__(static::$langFile . 'trial_interval'))
-                            ->options(Intervals::pluck('label', 'name'))
+                            ->options(Intervals::class)
                             ->default('day'),
                     ]),
 
                 Section::make()
+                    ->columnSpanFull()
                     ->compact()
                     ->heading(__(static::$langFile . 'plans_grace'))
                     ->schema([
@@ -177,11 +183,12 @@ class PlanResource extends PontusResource
                             ->default(15),
                         Select::make('grace_interval')
                             ->label(__(static::$langFile . 'grace_interval'))
-                            ->options(Intervals::pluck('label', 'name'))
+                            ->options(Intervals::class)
                             ->default('day'),
                     ]),
 
                 Section::make()
+                    ->columnSpanFull()
                     ->compact()
                     ->heading(__(static::$langFile . 'plans_options'))
                     ->schema([

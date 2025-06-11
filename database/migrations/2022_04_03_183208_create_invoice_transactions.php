@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('status')->default('new');
             // $table->boolean('approved')->default(0);
             // $table->bigInteger('order_ref')->nullable();
+            $table->string('entity_id')->nullable();
 
             $table->string('trx_reference')->nullable();
             $table->string('trx_id')->nullable();

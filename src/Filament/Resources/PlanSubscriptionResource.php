@@ -5,7 +5,7 @@ namespace LaraZeus\Pontus\Filament\Resources;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
-use Filament\Forms\Form;
+use Filament\Schemas\Schema;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 use LaraZeus\Pontus\Filament\Resources\PlanSubscriptionResource\Pages\CreatePlanSubscription;
@@ -19,9 +19,9 @@ class PlanSubscriptionResource extends PontusResource
 
     protected static ?int $navigationSort = 2;
 
-    public static function form(Form $form): Form
+    public static function form(Schema $schema): Schema
     {
-        return $form->schema([
+        return $schema->components([
             TextInput::make('plan_id')
                 ->required(),
             TextInput::make('subscriber_type')
