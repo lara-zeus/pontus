@@ -1,12 +1,11 @@
-includes:
-    - phpstan-baseline.neon
-
 parameters:
     level: 6
     paths:
         - src
+        - database
 
-    checkOctaneCompatibility: true
-    checkModelProperties: true
-    checkMissingIterableValueType: false
-    checkGenericClassInNonGenericObjectType: false
+    ignoreErrors:
+        -
+            identifier: missingType.generics
+        -
+            identifier: missingType.iterableValue
