@@ -2,6 +2,8 @@
 
 namespace LaraZeus\Pontus\Filament\Resources;
 
+use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\ListPlans;
+use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\EditPlan;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -250,9 +252,9 @@ class PlanResource extends PontusResource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPlans::route('/'),
+            'index' => ListPlans::route('/'),
             'create' => CreatePlan::route('/create'),
-            'edit' => Pages\EditPlan::route('/{record}/edit'),
+            'edit' => EditPlan::route('/{record}/edit'),
         ];
     }
 }

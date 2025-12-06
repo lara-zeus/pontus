@@ -2,6 +2,11 @@
 
 namespace LaraZeus\Pontus\Filament\Resources;
 
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\RelationManagers\ItemsRelationManager;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\RelationManagers\TransactionsRelationManager;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\Pages\ListInvoices;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\Pages\CreateInvoice;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\Pages\EditInvoice;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
@@ -59,17 +64,17 @@ class InvoiceResource extends PontusResource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ItemsRelationManager::class,
-            RelationManagers\TransactionsRelationManager::class,
+            ItemsRelationManager::class,
+            TransactionsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListInvoices::route('/'),
-            'create' => Pages\CreateInvoice::route('/create'),
-            'edit' => Pages\EditInvoice::route('/{record}/edit'),
+            'index' => ListInvoices::route('/'),
+            'create' => CreateInvoice::route('/create'),
+            'edit' => EditInvoice::route('/{record}/edit'),
         ];
     }
 
