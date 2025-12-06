@@ -2,8 +2,6 @@
 
 namespace LaraZeus\Pontus\Filament\Resources;
 
-use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\ListPlans;
-use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\EditPlan;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\RichEditor;
 use Filament\Forms\Components\Select;
@@ -20,8 +18,9 @@ use LaraZeus\Chaos\Filament\ChaosResource\ChaosForms;
 use LaraZeus\Chaos\Filament\ChaosResource\ChaosTables;
 use LaraZeus\Chaos\Forms\Components\MultiLang;
 use LaraZeus\Pontus\Enums\Intervals;
-use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\CreatePlan;
+use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\EditPlan;
+use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\ListPlans;
 
 class PlanResource extends PontusResource
 {
