@@ -14,7 +14,6 @@ use LaraZeus\Pontus\Filament\Resources\PlanSubscriptionResource;
 
 final class PontusPlugin implements Plugin
 {
-    // test phpstan
     use CanHideResources;
     use EvaluatesClosures;
     use HasNavigationGroupLabel;
