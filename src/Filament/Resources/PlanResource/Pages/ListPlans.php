@@ -2,7 +2,7 @@
 
 namespace LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 
-use Filament\Actions;
+use Filament\Actions\CreateAction;
 use LaraZeus\Chaos\Filament\ChaosResource\Pages\ChaosListRecords;
 use LaraZeus\Pontus\Filament\Resources\PlanResource;
 
@@ -13,7 +13,7 @@ class ListPlans extends ChaosListRecords
     protected function getHeaderActions(): array
     {
         return [
-            Actions\CreateAction::make(),
+            CreateAction::make(),
         ];
     }
 }

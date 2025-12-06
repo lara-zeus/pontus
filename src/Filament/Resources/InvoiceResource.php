@@ -10,8 +10,11 @@ use Filament\Schemas\Schema;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use LaraZeus\Pontus\Filament\Resources\InvoiceResource\Pages;
-use LaraZeus\Pontus\Filament\Resources\InvoiceResource\RelationManagers;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\Pages\CreateInvoice;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\Pages\EditInvoice;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\Pages\ListInvoices;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\RelationManagers\ItemsRelationManager;
+use LaraZeus\Pontus\Filament\Resources\InvoiceResource\RelationManagers\TransactionsRelationManager;
 use LaraZeus\Pontus\Models\Invoices\Invoice;
 
 class InvoiceResource extends PontusResource
@@ -59,17 +62,17 @@ class InvoiceResource extends PontusResource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\ItemsRelationManager::class,
-            RelationManagers\TransactionsRelationManager::class,
+            ItemsRelationManager::class,
+            TransactionsRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListInvoices::route('/'),
-            'create' => Pages\CreateInvoice::route('/create'),
-            'edit' => Pages\EditInvoice::route('/{record}/edit'),
+            'index' => ListInvoices::route('/'),
+            'create' => CreateInvoice::route('/create'),
+            'edit' => EditInvoice::route('/{record}/edit'),
         ];
     }
 

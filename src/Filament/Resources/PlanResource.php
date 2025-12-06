@@ -18,8 +18,9 @@ use LaraZeus\Chaos\Filament\ChaosResource\ChaosForms;
 use LaraZeus\Chaos\Filament\ChaosResource\ChaosTables;
 use LaraZeus\Chaos\Forms\Components\MultiLang;
 use LaraZeus\Pontus\Enums\Intervals;
-use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages;
 use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\CreatePlan;
+use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\EditPlan;
+use LaraZeus\Pontus\Filament\Resources\PlanResource\Pages\ListPlans;
 
 class PlanResource extends PontusResource
 {
@@ -250,9 +251,9 @@ class PlanResource extends PontusResource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListPlans::route('/'),
+            'index' => ListPlans::route('/'),
             'create' => CreatePlan::route('/create'),
-            'edit' => Pages\EditPlan::route('/{record}/edit'),
+            'edit' => EditPlan::route('/{record}/edit'),
         ];
     }
 }
